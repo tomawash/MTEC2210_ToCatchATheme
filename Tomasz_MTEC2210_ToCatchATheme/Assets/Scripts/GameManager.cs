@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public Transform leftTran;
     public Transform rightTran;
 
+    public float lastSpawn = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,22 @@ public class GameManager : MonoBehaviour
 
     public void SpawnItem()
     {
-        float rndXValue = Random.Range(leftTran.position.x, rightTran.position.x);
+
+        float rndXValue = 0;
+
+        if(lastSpawn >= 0)
+        {
+            rndXValue = Random.Range(leftTran.position.x, lastSpawn - 1);
+        }
+
+        else if(lastSpawn < 0)
+        {
+            rndXValue = Random.Range(lastSpawn + 1, rightTran.position.x);
+        }
+
+        lastSpawn = rndXValue;
+
+        //float rndXValue = Random.Range(leftTran.position.x, rightTran.position.x);
         Vector2 spawnPos = new Vector2(rndXValue, leftTran.position.y);
         Instantiate(itemPrefab, spawnPos, Quaternion.identity);
     }
