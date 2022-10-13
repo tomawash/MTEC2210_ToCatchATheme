@@ -13,10 +13,13 @@ public class GameManager : MonoBehaviour
     public int score = 0;
 
     public TextMeshPro scoreText;
+    
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("SpawnItem", 0, 2);
     }
 
@@ -46,12 +49,32 @@ public class GameManager : MonoBehaviour
         //float rndXValue = Random.Range(leftTran.position.x, rightTran.position.x);
         Vector2 spawnPos = new Vector2(rndXValue, leftTran.position.y);
 
-        int index = Random.Range(0, itemPrefab.Length);
-        Instantiate(itemPrefab[index], spawnPos, Quaternion.identity);
+        int j = Random.Range(0, 10);
+
+        if(j <= 4)
+        {
+            j = 0;
+        } else if(j <= 8)
+        {
+            j = 1;
+        } else
+        {
+            j = 2;
+        }
+
+        Instantiate(itemPrefab[j], spawnPos, Quaternion.identity);
+
+        //int index = Random.Range(0, itemPrefab.Length);
+        //Instantiate(itemPrefab[index], spawnPos, Quaternion.identity);
     }
 
     public void IncrementScore(int value)
     {
         score += value;
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }
