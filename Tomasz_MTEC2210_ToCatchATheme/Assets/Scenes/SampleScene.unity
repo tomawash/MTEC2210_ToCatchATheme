@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 80208039}
   - component: {fileID: 80208038}
   - component: {fileID: 80208037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,7 +887,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 910675451}
   - component: {fileID: 910675453}
   - component: {fileID: 910675454}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1044,11 +1044,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84a6a90b64da384684e8dfae0d4207a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ground:
+    serializedVersion: 2
+    m_Bits: 128
   coinClip: {fileID: 8300000, guid: 5dfa7e3146874444fb7ba58050f91374, type: 3}
   hazardClip: {fileID: 8300000, guid: 52b3031c44ebe384faf0892b4cabf725, type: 3}
   gm: {fileID: 189419056}
   speed: 200
   jumpSpeed: 5
+  distanceCheckAmount: 0.815
   health: 10
   oldpos: 0
 --- !u!61 &910675453

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 
 {
+    public LayerMask ground;
+
     public AudioClip coinClip;
     public AudioClip hazardClip;
     //public AudioSource audioSource;
@@ -15,6 +17,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
 
     bool jumping;
+    float xMove;
+
+    public float distanceCheckAmount = 0.5f;
 
     public float health = 10;
 
@@ -57,9 +62,11 @@ public class PlayerController : MonoBehaviour
         }
         */
 
+        Debug.Log("Are we on the ground? - " + GroundCheck());
 
+        xMove = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
         {
             jumping = true;
         }
@@ -126,5 +133,10 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log("Triggered");
         //Debug.Log(collision.transform.name);
+    }
+
+    public bool GroundCheck()
+    {
+        return Physics2D.Raycast(transform.position, Vector2.down, distanceCheckAmount, ground);
     }
 }
